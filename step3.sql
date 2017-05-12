@@ -3,8 +3,8 @@
 -- 3-1.把peoples表中school不是GDUFS的人全部找出来？（包括school为NULL的人）写出MySQL语句。
 select * from peoples where school is NULL or school != 'GDUFS';
 
--- 3-2.查找计算机系每次考试学生的平均成绩(最终显示学生姓名, 考试名称, 平均分)。
-select name,exam_name,avg(grade) from student;
+-- 3-2.查找计算机系每次考试学生的平均成绩(最终显示考试名称, 平均分)。
+select exam_name,avg(grade) from student;
 
 -- 3-3.查找女学霸（考试平均分达到80分或80分以上的女生的姓名, 分数）。
 select name,grade from student where avg(grade) >= 80 and sex = 'f';
