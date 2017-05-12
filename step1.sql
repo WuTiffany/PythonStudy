@@ -9,10 +9,10 @@ use university;
 -- 创建一张名为department的表，且主键为dept_name,属性类型为变长字符串类型；表中还有属性类型为int的building和为varchar类型的budget;
 -- 该表被后面创的student表所参照
 CREATE TABLE `university`.`department` (
-  `dept_name` VARCHAR(100) NOT NULL,
-  `building` INT NULL,
-  `budget` VARCHAR(45) NULL,
-  PRIMARY KEY (`dept_name`));
+  `dept_name` VARCHAR(45) NOT NULL,
+  `building` VARCHAR(45) NULL,
+  `budget` INT NULL,
+  PRIMARY KEY (`dept_name`))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 再创建一张名为student的表，主键是ID，外码是dept_name,参照表是上面创的department表
 CREATE TABLE `university`.`student` (
@@ -20,7 +20,7 @@ CREATE TABLE `university`.`student` (
   `name` VARCHAR(45) NULL,
   `sex` VARCHAR(45) NULL,
   `age` INT NULL,
-  `emotion-state` VARCHAR(45) NULL,
+  `emotion_state` VARCHAR(45) NULL,
   `dept_name` VARCHAR(45) NULL,
   PRIMARY KEY (`ID`),
   INDEX `dept_name_idx` (`dept_name` ASC),
@@ -28,7 +28,7 @@ CREATE TABLE `university`.`student` (
     FOREIGN KEY (`dept_name`)
     REFERENCES `university`.`department` (`dept_name`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE);
+    ON UPDATE CASCADE)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 接着创建一张名为exam的表，它的参考表是student表，exam表的主码是student_ID和exam_name,外码是student_ID
 CREATE TABLE `university`.`exam` (
@@ -36,11 +36,10 @@ CREATE TABLE `university`.`exam` (
   `exam_name` VARCHAR(45) NOT NULL,
   `grade` INT NULL,
   PRIMARY KEY (`student_ID`, `exam_name`),
-  CONSTRAINT `student-ID`
+  CONSTRAINT `student_ID`
     FOREIGN KEY (`student_ID`)
     REFERENCES `university`.`student` (`ID`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE);
+    ON UPDATE CASCADE)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
- -- 修改building的数据类型
- alter table department modify building varchar(100);
+
